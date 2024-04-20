@@ -11,8 +11,12 @@
     <groupId>fr.labom2i</groupId>
     <artifactId>ClockWise_RestAPI</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>ClockWise_RestAPI</name>
     <description>ClockWise_RestAPI</description>
+    <modules>
+        <module>domain</module>
+    </modules>
     <properties>
         <java.version>21</java.version>
     </properties>
