@@ -28,11 +28,11 @@ public class UserController {
         if (userService.isEmailExist(loginDto.getEmail())) {
             if (userService.verifyUser(loginDto.getEmail(),loginDto.getPassword())){
 
-                User user = (User) userService.loadUserByUsername(loginDto.getEmail());
+       //         User user = (User) userService.loadUserByUsername(loginDto.getEmail());
 
                 Map<String,Object> data = new HashMap<>();
 
-                data.put("jwt", userService.generateToken(user.getEmail(),user.getPassword()) );
+                data.put("jwt", userService.generateToken(loginDto.getEmail(),loginDto.getPassword()) );
 
                 return new BaseResponseDto("Success",data);
 
