@@ -52,7 +52,6 @@ public class UserBddRepository implements UserRepository  {
             throw new RuntimeException(e);
         }
 
-
     }
 
     @Override

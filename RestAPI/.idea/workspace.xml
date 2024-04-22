@@ -5,9 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f74cb3f-2788-44ca-8a76-62d2b54e5518" name="Changes" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/9e8b48cb-9253-49b8-b444-7a55f94155eb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9e8b48cb-9253-49b8-b444-7a55f94155eb.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/adapterBDD/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/adapterBDD/pom.xml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/../cw_api/src/main/java/com/clockwise/api/config/jwt/JwtAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cw_api/src/main/java/com/clockwise/api/config/jwt/JwtRequestFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cw_api/src/main/java/com/clockwise/api/config/jwt/JwtTokenProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cw_api/src/main/java/com/clockwise/api/config/security/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cw_api/src/main/java/com/clockwise/api/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cw_api/src/main/java/com/clockwise/api/dto/LoginDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cw_api/src/main/java/com/clockwise/api/dto/ResponseBaseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cw_api/src/main/java/com/clockwise/api/dto/UserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cw_api/src/main/java/com/clockwise/api/model/RoleUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cw_api/src/main/java/com/clockwise/api/model/TimeStamp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cw_api/src/main/java/com/clockwise/api/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cw_api/src/main/java/com/clockwise/api/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cw_api/src/main/java/com/clockwise/api/service/RootService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cw_api/src/main/java/com/clockwise/api/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cw_api/src/main/java/com/clockwise/api/util/ConnectionDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MySQL/ClockWise.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../MySQL/ClockWise.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9e8b48cb-9253-49b8-b444-7a55f94155eb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9e8b48cb-9253-49b8-b444-7a55f94155eb.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapterBDD/src/main/java/fr/labom2i/repository/UserBddRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/adapterBDD/src/main/java/fr/labom2i/repository/UserBddRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/endPoint/src/main/java/fr/labom2i/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/endPoint/src/main/java/fr/labom2i/controller/UserController.java" afterDir="false" />
+>>>>>>> 99f3a8a05f3b443ea74e11c91749f0355d01b7f8
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +79,10 @@
     "Spring Boot.Main.executor": "Debug",
     "git-widget-placeholder": "dev",
     "kotlin-language-version-configured": "true",
+<<<<<<< HEAD
+=======
+    "last_opened_file_path": "C:/Users/Administrateur/gitM2i/ClockWise/RestAPI",
+>>>>>>> 99f3a8a05f3b443ea74e11c91749f0355d01b7f8
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -102,7 +130,11 @@
       <workItem from="1713700952213" duration="12027000" />
       <workItem from="1713713774056" duration="194000" />
       <workItem from="1713713979095" duration="15245000" />
+<<<<<<< HEAD
       <workItem from="1713764911014" duration="320000" />
+=======
+      <workItem from="1713768508374" duration="10304000" />
+>>>>>>> 99f3a8a05f3b443ea74e11c91749f0355d01b7f8
     </task>
     <servers />
   </component>
