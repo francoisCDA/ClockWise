@@ -16,10 +16,8 @@ import java.util.List;
 
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "users")
-@Builder
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User implements UserDetails {
 
     @Id
@@ -31,10 +29,10 @@ public class User implements UserDetails {
 
     protected String password;
 
-    private String role;
+    protected String role;
 
     @Column(name = "is_enable")
-    private boolean isEnabled=true;
+    protected boolean isEnabled=true;
 
 
     @Override
@@ -113,4 +111,48 @@ public class User implements UserDetails {
     public void setEnabled(boolean enabled) {
         isEnabled = enabled;
     }
+
+    public static class Builder {
+
+        private Long id;
+        private String email;
+        private String password;
+        private String role;
+        private boolean isEnabled;
+
+        public Builder() {}
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+        public Builder password(String password) {
+            this.password = password;
+            return this;
+        }
+        public Builder role(String role) {
+            this.role = role;
+            return this;
+        }
+        public Builder isEnabled(boolean isEnabled) {
+            this.isEnabled = isEnabled;
+            return this;
+        }
+        public User build() {
+            User user = new User();
+            user.setId(id);
+            user.setEmail(email);
+            user.setPassword(password);
+            user.setRole(role);
+            user.setEnabled(isEnabled);
+            return user;
+        }
+    }
+
+
 }

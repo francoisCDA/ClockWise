@@ -56,9 +56,9 @@ public class SecurityConfig {
                 // Configurer l'autorisation des requêtes HTTP :
                 .authorizeHttpRequests(authz -> authz
 
-                        .requestMatchers("/api/v2/login").permitAll()
-                        .requestMatchers("/api/v2/register").permitAll()
-                        .requestMatchers("/api/v2/createroot").permitAll()
+                        .requestMatchers("/cwise/api/v2/user/login").permitAll()
+                        .requestMatchers("/cwise/api/v2/user/init").permitAll()
+                        .requestMatchers("//cwise/api/v2/user").permitAll()
 //                        .requestMatchers("/api/todo/admin/**").hasRole("ADMIN")
 //                        .requestMatchers("/api/todo/user").hasRole("USER")
 //                        .anyRequest().authenticated())

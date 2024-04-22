@@ -1,3 +1,4 @@
+ DROP DATABASE IF EXISTS clockwise2;
  DROP DATABASE IF EXISTS clockwise;
 
 CREATE DATABASE IF NOT EXISTS clockwise;
@@ -21,6 +22,14 @@ CREATE TABLE users (
     role VARCHAR(20) NOT NULL,
     is_enable boolean
    -- CONSTRAINT fk_role_user FOREIGN KEY (role_id) REFERENCES role(id_role)
+);
+
+CREATE TABLE details_employee (
+	user_id BIGINT,
+    firstname VARCHAR(50),
+    lastname VARCHAR(50),
+    week_working_min INT,
+    CONSTRAINT fk_users_details FOREIGN KEY (user_id) REFERENCES users(id_user) ON DELETE CASCADE
 );
 
 

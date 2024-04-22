@@ -79,7 +79,7 @@ public class UserService implements UserDetailsService {
             return false;
         }
 
-        User newUser = User.builder()
+        User newUser = new User.Builder()
                 .email(userDto.getEmail())
                 .password(passwordEncoder.encode(userDto.getPassword()))
                 .role(roleUser.toString())

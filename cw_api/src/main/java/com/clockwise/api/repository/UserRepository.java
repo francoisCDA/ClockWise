@@ -35,7 +35,7 @@ public class UserRepository {
 
             if (rs.next()) {
 
-                User user = User.builder()
+                User user = new User.Builder()
                         .id(rs.getLong("id_user"))
                         .email(rs.getString("email"))
                         .password(rs.getString("password"))

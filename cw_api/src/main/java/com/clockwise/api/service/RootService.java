@@ -4,6 +4,9 @@ import com.clockwise.api.dto.UserDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RootService {
 
 
@@ -17,15 +20,19 @@ public class RootService {
         this.userService = userService;
     }
 
+
     public UserDto getRootUser() {
+
         int adminCount = userService.getAllAdminCount();
 
         if (adminCount == 0) {
-            UserDto userDto = new UserDto();
-            userDto.setEmail(rootMail);
-            userDto.setPassword(rootPassword);
-            userDto.setRole("ROLE_ADMIN");
-            return userDto;
+
+            UserDto root = new UserDto();
+            root.setEmail(rootMail);
+            root.setPassword(rootPassword);
+            root.setRole("ROLE_ADMIN");
+
+            return root;
         }
 
         return null;

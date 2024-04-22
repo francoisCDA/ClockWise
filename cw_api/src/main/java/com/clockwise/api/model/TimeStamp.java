@@ -9,11 +9,7 @@ import lombok.NoArgsConstructor;
 import java.time.Instant;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "time_stamp")
-@Builder
 public class TimeStamp {
 
     @Id
@@ -27,9 +23,15 @@ public class TimeStamp {
     @Column(name = "end_stamp")
     private Long endStamp;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private User user;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
+
+
 
     public long getMinuteDuration() {
         long totalSeconds = 0L;
@@ -41,6 +43,46 @@ public class TimeStamp {
             }
         }
         return  totalSeconds / 60;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getStartStamp() {
+        return startStamp;
+    }
+
+    public void setStartStamp(Long startStamp) {
+        this.startStamp = startStamp;
+    }
+
+    public Long getEndStamp() {
+        return endStamp;
+    }
+
+    public void setEndStamp(Long endStamp) {
+        this.endStamp = endStamp;
+    }
+
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
 }

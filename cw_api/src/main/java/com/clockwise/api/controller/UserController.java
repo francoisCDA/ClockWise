@@ -8,31 +8,30 @@ import com.clockwise.api.service.RootService;
 import com.clockwise.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.management.relation.RoleNotFoundException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v2")
+@RequestMapping("/cwise/api/v2/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping(value = "/login",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping("/login") // localhost:8000/cwise/api/v2/user/login
     public ResponseBaseDto login(@RequestBody LoginDto loginDto) {
 
         if (userService.checkUserEmailExists(loginDto.getEmail())) {
             if (userService.verifyUser(loginDto.getEmail(), loginDto.getPassword())) {
 
                 Map<String, String> data = new HashMap<>();
-
                 String token = userService.generateToken(loginDto.getEmail(), loginDto.getPassword());
-
                 data.put("token", token);
-
                 return new ResponseBaseDto("Success", data);
             }
         }
@@ -41,7 +40,7 @@ public class UserController {
 
     }
 
-    @PostMapping("/register")
+    @PostMapping("/register/")  // localhost:8000/cwise/api/v2/user/register
     public ResponseBaseDto register(@RequestBody UserDto userDto) {
 
         if (userService.createUser(userDto)) {
@@ -51,17 +50,16 @@ public class UserController {
 
     }
 
-    @GetMapping("/createroot")
-    public ResponseBaseDto createRoot() {
+    @GetMapping("/init")
+    public ResponseEntity<String> createRoot() { // localhost:8000/cwise/api/v2/user/init
 
         UserDto userDto = new RootService(userService).getRootUser();
 
         if (userDto != null) {
-            if (userService.createUser(userDto)) {
-                return new ResponseBaseDto("Success", null);
-            }
+            userService.createUser(userDto);
+            return ResponseEntity.ok("ok");
         }
-        return new ResponseBaseDto("Error", null);
+        return ResponseEntity.badRequest().build();
 
     }
 
