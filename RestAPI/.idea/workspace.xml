@@ -5,48 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f74cb3f-2788-44ca-8a76-62d2b54e5518" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/adapterBDD/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/adapterBDD/src/main/java/fr/labom2i/entity/EmployeeData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/adapterBDD/src/main/java/fr/labom2i/entity/EmployeeMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/adapterBDD/src/main/java/fr/labom2i/entity/ReportBdd.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/adapterBDD/src/main/java/fr/labom2i/entity/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/adapterBDD/src/main/java/fr/labom2i/entity/TimeStampBdd.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/adapterBDD/src/main/java/fr/labom2i/entity/UserBdd.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/adapterBDD/src/main/java/fr/labom2i/repository/UserBddRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/adapterBDD/src/main/java/fr/labom2i/util/ConnectionDB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/adapterBDD/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/java/fr/labom2i/domainEntity/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/java/fr/labom2i/domainEntity/Report.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/java/fr/labom2i/domainEntity/RoleUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/java/fr/labom2i/domainEntity/TimeStamp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/java/fr/labom2i/domainEntity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/java/fr/labom2i/service/UserDomainService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/java/fr/labom2i/spi/port/BaseCrudRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/java/fr/labom2i/spi/port/EmployeeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/java/fr/labom2i/spi/port/ReportRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/java/fr/labom2i/spi/port/TimeStampRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/java/fr/labom2i/spi/port/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/endPoint/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/endPoint/src/main/java/fr/labom2i/config/jwt/JwtAuthenticationEntryPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/endPoint/src/main/java/fr/labom2i/config/jwt/JwtRequestFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/endPoint/src/main/java/fr/labom2i/config/jwt/JwtTokenProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/endPoint/src/main/java/fr/labom2i/config/security/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/endPoint/src/main/java/fr/labom2i/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/endPoint/src/main/java/fr/labom2i/dto/BaseResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/endPoint/src/main/java/fr/labom2i/dto/LoginDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/endPoint/src/main/java/fr/labom2i/dto/UserDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/endPoint/src/main/java/fr/labom2i/model/UserRest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/endPoint/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ClockWise_RestAPI/domain/src/main/java/fr/labom2i/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ClockWise_RestAPI/src/main/java/fr/labom2i/clockwise_restapi/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ClockWise_RestAPI/src/main/java/fr/labom2i/clockwise_restapi/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9e8b48cb-9253-49b8-b444-7a55f94155eb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9e8b48cb-9253-49b8-b444-7a55f94155eb.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapterBDD/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/adapterBDD/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,10 +27,10 @@
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -81,31 +42,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven.RestAPI [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.RestAPI [install].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.Main.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;domain&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.RestAPI [clean].executor": "Run",
+    "Maven.RestAPI [install].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.Main.executor": "Debug",
+    "git-widget-placeholder": "dev",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="envFilePaths">
@@ -141,41 +102,11 @@
       <workItem from="1713700952213" duration="12027000" />
       <workItem from="1713713774056" duration="194000" />
       <workItem from="1713713979095" duration="15245000" />
+      <workItem from="1713764911014" duration="320000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/endPoint/src/main/java/fr/labom2i/controller/UserController.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="67" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/endPoint/src/main/java/fr/labom2i/controller/UserController.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="68" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/endPoint/src/main/java/fr/labom2i/controller/UserController.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="69" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/endPoint/src/main/java/fr/labom2i/controller/UserController.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="70" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/endPoint/src/main/java/fr/labom2i/controller/UserController.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="71" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
