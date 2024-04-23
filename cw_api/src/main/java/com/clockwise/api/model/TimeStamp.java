@@ -1,5 +1,6 @@
 package com.clockwise.api.model;
 
+import com.clockwise.api.dto.TimeStampDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
+import java.util.Date;
 
 @Entity
 @Table(name = "time_stamp")
@@ -84,5 +86,6 @@ public class TimeStamp {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
 
 }

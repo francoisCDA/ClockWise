@@ -5,6 +5,8 @@ import com.clockwise.api.util.ConnectionDB;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class EmployeeRepository {
@@ -64,6 +66,59 @@ public class EmployeeRepository {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-
     }
+
+    public Employee getEmployeeByEmail(String email) {
+
+        String userQuery = "select id_user, email, role, is_enable, user_id, firstname, lastname, week_working_min from users JOIN details_employee ON user.id_user = details_emloyee.user_id where email = ?";
+
+        try {
+            PreparedStatement psUser = con.prepareStatement(userQuery);
+            psUser.setString(1, email);
+
+            rs = psUser.executeQuery();
+
+            if (rs.next()) {
+                return mkEmployeeFromRs();
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+
+    public List<Employee> getAllEmployees() {
+        List<Employee> ret = new ArrayList<Employee>();
+        String employeeQuery = "select id_user, email, role, is_enable, user_id, firstname, lastname, week_working_min from users JOIN details_employee ON user.id_user = details_emloyee.user_id where role = 'ROLE_EMPLOYEE' ";
+
+        try {
+            rs = con.createStatement().executeQuery(employeeQuery);
+
+            while (rs.next()) {
+                Employee employee = mkEmployeeFromRs();
+
+                ret.add(employee);
+            }
+            return ret;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private Employee mkEmployeeFromRs() throws SQLException {
+        Employee employee = new Employee();
+        employee.setId(rs.getLong("id_user"));
+        employee.setRole(rs.getString("role"));
+        employee.setEmail(rs.getString("email"));
+        employee.setEnabled(rs.getBoolean("is_enable"));
+        employee.setFirstname(rs.getString("firstname"));
+        employee.setLastname(rs.getString("lastname"));
+        employee.setWeekWorkingMin(rs.getInt("week_working_min"));
+        return employee;
+    }
+
+
 }

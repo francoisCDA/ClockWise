@@ -12,6 +12,7 @@ import com.clockwise.api.service.EmployeeService;
 import com.clockwise.api.service.TimeStampService;
 import com.clockwise.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -55,27 +56,19 @@ public class EmployeeController {
         return new ResponseBaseDto("Success",data);
     }
 
+
     @GetMapping("/stamp")  // GET @ localhost:8000/cwise/api/v2/employee/stamp   @RequestHeader (name="Authorization") String token
-    public ResponseBaseDto stamp(@AuthenticationPrincipal User user) {
+    public ResponseEntity<TimeStampDto> stamp(@AuthenticationPrincipal User user) {
 
         TimeStampDto lastStampDto = timeStampService.stampEmployee(user.getId());
 
-        if (timeStamp == null || timeStamp.getEndStamp() != null) {
-            if (timeStamp.getEndStamp() == null) {
-
-            }
+        if (lastStampDto != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(lastStampDto);
         }
 
-        if (timeStampService.stampEmployee(user.getId())) {
-            try {
-
-                return new ResponseBaseDto("Success",timeStampDto);
-            } catch (Exception ex) {
-                return new ResponseBaseDto("Success, but :",ex);
-            }
-        }
-        return new ResponseBaseDto("Error, nothing change",null);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
+
 
     @GetMapping("/timestamps")
     public ResponseEntity<List<TimeStampDto>> timestamps(@RequestBody(required = false) TimelaspDto timelaspDto) {

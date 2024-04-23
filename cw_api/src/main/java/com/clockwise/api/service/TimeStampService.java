@@ -6,6 +6,8 @@ import com.clockwise.api.repository.TimeStampRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+
 @Service
 public class TimeStampService {
 
@@ -13,7 +15,20 @@ public class TimeStampService {
     private TimeStampRepository timeStampRepository;
 
     public TimeStampDto stampEmployee(Long employeeId) {
-         timeStampRepository.stamp(employeeId);
+
+        TimeStamp timeStamp = timeStampRepository.getEmployeeLastTimeStamp(employeeId);
+
+        if (timeStamp == null || timeStamp.getEndStamp() != null) {
+             TimeStamp newTimeStamp = new TimeStamp();
+             newTimeStamp.setStartStamp(Instant.now().toEpochMilli());
+
+             if (timeStampRepository.insertTimeStamp(newTimeStamp)) {
+                 timeStamp = timeStampRepository.getEmployeeLastTimeStamp(employeeId);
+                 return TimeStampDto.parse(timeStamp);
+             };
+        }
+
+        return null;
     }
 
 
