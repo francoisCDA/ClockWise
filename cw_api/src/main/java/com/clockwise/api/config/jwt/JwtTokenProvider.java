@@ -69,7 +69,9 @@ public class JwtTokenProvider {
                 .parseClaimsJws(token)
                 .getBody();
 
-        return claims.getSubject();
+        String email = claims.getSubject();
+
+        return email;
     }
 
 }

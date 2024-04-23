@@ -45,14 +45,10 @@ public class UserRepository {
 
                 ret = Optional.of(user);
             }
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
         return ret;
-
-
     }
 
     public boolean save(User user) {
@@ -77,7 +73,7 @@ public class UserRepository {
         List<User> ret = new ArrayList<>();
 
         try {
-            ps = con.prepareStatement("SELECT id_user, email, password FROM users JOIN role ON users.role_id WHERE role_id = ?");
+            ps = con.prepareStatement("SELECT id_user, email, password, is_enable FROM users WHERE role = ?");
             ps.setString(1, role);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -85,6 +81,7 @@ public class UserRepository {
                 user.setId(rs.getLong("id_user"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
+                user.setEnabled(rs.getBoolean("is_enable"));
                 user.setRole(role);
                 ret.add(user);
             }

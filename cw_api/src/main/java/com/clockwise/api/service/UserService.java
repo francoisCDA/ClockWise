@@ -5,6 +5,8 @@ import com.clockwise.api.dto.UserDto;
 import com.clockwise.api.model.RoleUser;
 import com.clockwise.api.model.User;
 import com.clockwise.api.repository.UserRepository;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -36,6 +38,8 @@ public class UserService implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
 
 
     @Override
@@ -70,12 +74,14 @@ public class UserService implements UserDetailsService {
         }
 
         if (!userDto.getRole().startsWith("ROLE_")) {
-            userDto.setRole("ROLE_" + userDto.getRole());
+            userDto.setRole("ROLE_" + userDto.getRole().toUpperCase());
         }
 
-        RoleUser roleUser = RoleUser.valueOf(userDto.getRole());
+        RoleUser roleUser;
 
-        if (roleUser == null) {
+        try {
+            roleUser = RoleUser.valueOf(userDto.getRole());
+        } catch (IllegalArgumentException e) {
             return false;
         }
 
@@ -111,13 +117,14 @@ public class UserService implements UserDetailsService {
 
 
     public int getAllAdminCount() {
-
         List<User> users = getUsersByRole("ROLE_ADMIN");
         if (users == null) {return 0;}
         return users.size();
-
-
     }
 
 
+    // TODO
+    public boolean removeUserByEmail(String userEmail) {
+        return false;
+    }
 }

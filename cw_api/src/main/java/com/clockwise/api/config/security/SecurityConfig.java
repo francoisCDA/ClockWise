@@ -38,66 +38,47 @@ public class SecurityConfig {
         this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
     }
 
-    // Bean pour configurer la chaîne de filtres de sécurité.
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                // Désactiver CSRF (Cross-Site Request Forgery) pour les services REST, car ils utilisent des tokens plutôt que des cookies pour l'authentification.
                 .csrf(csrf -> csrf.disable())
-
-                // Configurer CORS (Cross-Origin Resource Sharing) en utilisant la source de configuration définie dans une autre méthode.
-                // Cela permet de contrôler comment les ressources peuvent être partagées entre différents domaines/origines.
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-
-                // Configurer la gestion de la session pour être sans état, ce qui est typique pour les API REST qui utilisent des tokens (comme JWT) pour l'authentification.
-                // Cela signifie que le serveur ne maintiendra pas d'état de session entre les requêtes.
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-
-                // Configurer l'autorisation des requêtes HTTP :
                 .authorizeHttpRequests(authz -> authz
 
-                        .requestMatchers("/cwise/api/v2/user/login").permitAll()
-                        .requestMatchers("/cwise/api/v2/user/init").permitAll()
-                        .requestMatchers("//cwise/api/v2/user").permitAll()
-//                        .requestMatchers("/api/todo/admin/**").hasRole("ADMIN")
-//                        .requestMatchers("/api/todo/user").hasRole("USER")
-//                        .anyRequest().authenticated())
-
-                        .anyRequest().permitAll())
+                        .requestMatchers("/cwise/api/v2/user/**").permitAll()
+                        .requestMatchers("/cwise/api/v2/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/cwise/api/v2/employee/**").hasRole("EMPLOYEE")
+                        .anyRequest().authenticated())
+//                        .anyRequest().permitAll())
 
                 .exceptionHandling(exceptions -> exceptions.authenticationEntryPoint(jwtAuthenticationEntryPoint))
-
-                // Ajouter un filtre personnalisé (JwtRequestFilter dans cet exemple) avant le filtre d'authentification par nom d'utilisateur et mot de passe.
-                // Ce filtre vérifie la présence d'un JWT valide dans les requêtes et l'utilise pour l'authentification.
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
-// Construire et retourner la chaîne de filtres de sécurité configurée.
+
         return http.build();
 
     }
 
-    // Injection de la configuration d'authentification.
+
     @Autowired
     private AuthenticationConfiguration authenticationConfiguration;
 
-    // Bean pour obtenir le gestionnaire d'authentification.
+
     @Bean
     public AuthenticationManager authenticationManager() throws Exception {
-        // Obtention du gestionnaire d'authentification à partir de la configuration.
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-    // Bean pour le filtre d'authentification JWT.
+
     @Bean
     public JwtRequestFilter jwtAuthenticationFilter() {
-        // Création d'un nouveau filtre avec le service utilisateur.
         return new JwtRequestFilter(userService);
     }
 
-    // Bean pour le chiffrement des mots de passe.
     @Bean
     public PasswordEncoder passwordEncoder() {
-        // Utilisation de BCrypt pour le chiffrement des mots de passe.
         return new BCryptPasswordEncoder();
     }
 

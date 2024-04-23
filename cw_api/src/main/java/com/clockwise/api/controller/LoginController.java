@@ -3,22 +3,18 @@ package com.clockwise.api.controller;
 import com.clockwise.api.dto.LoginDto;
 import com.clockwise.api.dto.ResponseBaseDto;
 import com.clockwise.api.dto.UserDto;
-import com.clockwise.api.model.User;
 import com.clockwise.api.service.RootService;
 import com.clockwise.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.relation.RoleNotFoundException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/cwise/api/v2/user")
-public class UserController {
+public class LoginController {
 
     @Autowired
     private UserService userService;
@@ -35,23 +31,22 @@ public class UserController {
                 return new ResponseBaseDto("Success", data);
             }
         }
-
         return new ResponseBaseDto("Invalid connexion",null);
-
     }
 
-    @PostMapping("/register/")  // localhost:8000/cwise/api/v2/user/register
-    public ResponseBaseDto register(@RequestBody UserDto userDto) {
+    // sera suprimée
+//    @PostMapping("/registertest/")
+//    public ResponseBaseDto register(@RequestBody UserDto userDto) {
+//
+//        if (userService.createUser(userDto)) {
+//            return new ResponseBaseDto("Success",null);
+//        }
+//        return new ResponseBaseDto("Invalid argument",null);
+//    }
 
-        if (userService.createUser(userDto)) {
-            return new ResponseBaseDto("Success",null);
-        }
-        return new ResponseBaseDto("Invalid connexion",null);
-
-    }
-
+    // génère l'utilisateur root faute de mieux
     @GetMapping("/init")
-    public ResponseEntity<String> createRoot() { // localhost:8000/cwise/api/v2/user/init
+    public ResponseEntity<String> createRoot() { // GET @ localhost:8000/cwise/api/v2/user/init
 
         UserDto userDto = new RootService(userService).getRootUser();
 
@@ -60,9 +55,6 @@ public class UserController {
             return ResponseEntity.ok("ok");
         }
         return ResponseEntity.badRequest().build();
-
     }
-
-
 
 }

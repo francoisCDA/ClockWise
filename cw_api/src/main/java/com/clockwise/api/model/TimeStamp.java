@@ -33,16 +33,16 @@ public class TimeStamp {
 
 
 
-    public long getMinuteDuration() {
+    public long getMilliDuration() {
         long totalSeconds = 0L;
         if (startStamp != null) {
             if (endStamp != null) {
                 totalSeconds = endStamp - startStamp;
             } else {
-                totalSeconds = Instant.now().toEpochMilli()/1000 - startStamp;
+                totalSeconds = Instant.now().toEpochMilli() - startStamp;
             }
         }
-        return  totalSeconds / 60;
+        return  totalSeconds ;
     }
 
     public Long getId() {

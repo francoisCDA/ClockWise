@@ -45,7 +45,12 @@ CREATE TABLE time_stamp (
 -- INSERT INTO role (id_role,role) values (1,"ROLE_ADMIN") ;
 -- INSERT INTO role (id_role,role) values (2,"ROLE_EMPLOYEE") ;
 
+
+
  select * from users;
+ select * from details_employee;
  -- select * from role;
+ 
+ delete from users where id_user = 7;
  
  -- SELECT id_user, email, password FROM users JOIN role ON users.role_id WHERE role_id = 1;

@@ -53,6 +53,73 @@ public class Employee extends User {
         this.timeStamps = timeStamps;
     }
 
+    public static class EmployeeBuilder {
+
+        private Long id;
+        private String email;
+        private String password;
+        private String role;
+        private boolean isEnabled;
+        private String firstname;
+        private String lastname;
+        private int weekWorkingMin;
+        private List<TimeStamp> timeStamps = new ArrayList<>();
+
+        public EmployeeBuilder () {}
+
+        public EmployeeBuilder id(Long id) {
+            this.id = id;
+            return this;
+        }
+        public EmployeeBuilder email(String email) {
+            this.email = email;
+            return this;
+        }
+        public EmployeeBuilder password(String password) {
+            this.password = password;
+            return this;
+        }
+        public EmployeeBuilder role(String role) {
+            this.role = role;
+            return this;
+        }
+        public EmployeeBuilder isEnabled(boolean isEnabled) {
+            this.isEnabled = isEnabled;
+            return this;
+        }
+        public EmployeeBuilder firstname(String firstname) {
+            this.firstname = firstname;
+            return this;
+        }
+        public EmployeeBuilder lastname(String lastname) {
+            this.lastname = lastname;
+            return this;
+        }
+        public EmployeeBuilder weekWorkingMin(int weekWorkingMin) {
+            this.weekWorkingMin = weekWorkingMin;
+            return this;
+        }
+        public EmployeeBuilder timeStamps(List<TimeStamp> timeStamps) {
+            this.timeStamps = timeStamps;
+            return this;
+        }
+        public Employee build() {
+            Employee employee = new Employee();
+            employee.setId(id);
+            employee.setEmail(email);
+            employee.setPassword(password);
+            employee.setRole(role);
+            employee.setEnabled(isEnabled);
+            employee.setFirstname(firstname);
+            employee.setLastname(lastname);
+            employee.setWeekWorkingMin(weekWorkingMin);
+            employee.setTimeStamps(timeStamps);
+            return employee;
+        }
+
+
+
+    }
 
 
 }
