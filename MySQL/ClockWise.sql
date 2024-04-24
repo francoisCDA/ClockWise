@@ -1,9 +1,9 @@
- DROP DATABASE IF EXISTS clockwise2;
- DROP DATABASE IF EXISTS clockwise;
+-- DROP DATABASE IF EXISTS clockwise2;
+-- DROP DATABASE IF EXISTS clockwise;
 
-CREATE DATABASE IF NOT EXISTS clockwise;
+-- CREATE DATABASE IF NOT EXISTS clockwise;
 
-use clockwise;
+ -- use clockwise;
 
 /**
 CREATE TABLE role (
@@ -15,7 +15,7 @@ INSERT INTO role (id_role,role) values (1,"ROLE_ADMIN") ;
 INSERT INTO role (id_role,role) values (2,"ROLE_EMPLOYEE") ;
 **/
 
-CREATE TABLE users (
+CREATE TABLE if not EXISTS users (
 	id_user BIGINT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE users (
    -- CONSTRAINT fk_role_user FOREIGN KEY (role_id) REFERENCES role(id_role)
 );
 
-CREATE TABLE details_employee (
+CREATE TABLE if not EXISTS details_employee (
 	user_id BIGINT,
     firstname VARCHAR(50),
     lastname VARCHAR(50),
@@ -33,7 +33,7 @@ CREATE TABLE details_employee (
 );
 
 
-CREATE TABLE time_stamp (
+CREATE TABLE if not EXISTS time_stamp (
 	id_ts BIGINT PRIMARY KEY AUTO_INCREMENT,
     start_stamp BIGINT NOT NULL,
     end_stamp BIGINT,
@@ -47,7 +47,9 @@ CREATE TABLE time_stamp (
 
 
 
-   select * from users;
+  -- select * from users;
+   
+   
  -- select * from details_employee;
  -- select * from role;
  -- select * from time_stamp;
@@ -55,7 +57,9 @@ CREATE TABLE time_stamp (
  -- UPDATE time_stamp SET start_stamp = ?, end_stamp = ?  WHERE id_ts = ?;
  
  -- truncate table time_stamp ;
+ -- TRUNCATE table users;
  
- -- delete from users where id_user = 7;
+ 
+  -- delete from users where id_user = 1;
  
  -- SELECT id_user, email, password FROM users JOIN role ON users.role_id WHERE role_id = 1;

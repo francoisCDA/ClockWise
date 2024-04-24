@@ -17,7 +17,10 @@ public class InitRoot {
     public InitRoot() {
 
         try {
-            url = new URL("http://localhost:8000/cwise/api/v2/user/init");
+
+            String port = System.getenv("SQL_PORT");
+
+            url = new URL("http://localhost:"+port+"/cwise/api/v2/user/init");
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -30,12 +33,6 @@ public class InitRoot {
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 
-//            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-//            String inputLine;
-//            while ((inputLine = in.readLine()) != null) {
-//                System.out.println(inputLine);
-//            }
-//            in.close();
 
             connection.disconnect();
 

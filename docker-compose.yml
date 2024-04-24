@@ -1,0 +1,49 @@
+
+services:
+  mysql_db:
+    image: mysql
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${SQL_ROOT_PASSWORD} 
+      MYSQL_DATABASE: ${SQL_DATABASE}  
+      MYSQL_USER: ${MYSQL_USER}  
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_TCP_PORT: ${SQL_PORT}  
+    volumes:
+      - ./MySQL/ClockWise.sql:/docker-entrypoint-initdb.d/ClockWise.sql
+      - cwise_db:/var/lib/mysql
+    networks:
+      - cwise_net
+    restart: always
+ 
+  cw_api:
+    build:
+      context: ./cw_api/
+    container_name: cw_api
+    restart: always
+    depends_on:
+      - mysql_db
+    environment:
+      - SERVER_PORT=${SERVER_PORT}
+      - SQL_URL=mysql_db
+      - SQL_PORT=${SQL_PORT}
+      - SQL_DATABASE=${SQL_DATABASE}
+      - SQL_USERNAME=${SQL_USERNAME}
+      - SQL_PASSWORD=${SQL_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+    networks:
+      - cwise_net
+    expose:
+      - ${SERVER_PORT}
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+
+
+
+
+networks:
+  cwise_net:
+    driver: bridge
+
+volumes:
+  cwise_db:
