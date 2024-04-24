@@ -47,10 +47,15 @@ CREATE TABLE time_stamp (
 
 
 
- select * from users;
- select * from details_employee;
+  -- select * from users;
+ -- select * from details_employee;
  -- select * from role;
+ -- select * from time_stamp;
  
- delete from users where id_user = 7;
+ -- UPDATE time_stamp SET start_stamp = ?, end_stamp = ?  WHERE id_ts = ?;
+ 
+ -- truncate table time_stamp ;
+ 
+ -- delete from users where id_user = 7;
  
  -- SELECT id_user, email, password FROM users JOIN role ON users.role_id WHERE role_id = 1;

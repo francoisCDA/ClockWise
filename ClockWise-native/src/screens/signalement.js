@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; // Importation de useNavigation
+import { useNavigation } from '@react-navigation/native'; 
 
 function SignalementScreen() {
   const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
-  const navigation = useNavigation(); // Utilisation de useNavigation pour obtenir l'objet de navigation
+  const navigation = useNavigation(); 
 
   const handleSignalementPress = () => {
-    // Action à exécuter lors du clic sur "Signaler un problème"
   };
 
   const handleBackButtonPress = () => {
@@ -20,32 +19,26 @@ function SignalementScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Image en haut */}
       <Image
         source={require('../assets/logo_clockwise.png')}
         style={styles.image}
       />
-      {/* Prénom et Nom */}
-      <Text style={[styles.name, { color: 'rgba(0, 29, 46, 1)'}]}>MATHEO CORZA</Text>
+      <Text style={[styles.name, { color: 'rgba(0, 29, 46, 1)'}]}>MATHEO GILLE</Text>
       <View style={styles.separator} />
       <Text style={[styles.signal, { color: 'rgba(0, 29, 46, 1)'}]}>PAGE DE SIGNALEMENT</Text>
 
-      {/* Champ Objet */}
       <Text style={[styles.label, { color: 'rgba(0, 29, 46, 1)'}]}>Objet:</Text>
       <TextInput
         style={styles.input}
         placeholder="Entrez l'objet du signalement"
       />
 
-      {/* Champ Commentaire */}
       <Text style={[styles.label, { color: 'rgba(0, 29, 46, 1)'}]}>Commentaire:</Text>
       <TextInput
         style={[styles.input, { height: 200 }]}
         placeholder="Entrez votre commentaire"
         multiline
       />
-
-      {/* Boutons supplémentaires */}
       <View style={styles.additionalButtons}>
         <TouchableOpacity style={styles.additionalButton1} onPress={handleSignalementPress}>
           <Text style={styles.additionalButtonText}>Envoyer</Text>

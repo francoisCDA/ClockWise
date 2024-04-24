@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class EmployeeService {
@@ -41,6 +42,35 @@ public class EmployeeService {
                 .build();
 
         return employeeRepository.save(employee);
+
+    }
+
+    public List<EmployeeDto> getAllEmployee() {
+        List<EmployeeDto> ret = new ArrayList<>();
+
+        List<Employee> employeeList = employeeRepository.getAllEmployees();
+
+        for (Employee employee : employeeList) {
+            ret.add(EmployeeDto.parse(employee));
+        }
+
+        return ret;
+
+    }
+
+    public EmployeeDto findEmployee(User user) {
+
+        Employee employee = employeeRepository.getDetailsUser(user);
+
+        return EmployeeDto.parse(employee);
+
+    }
+
+    public EmployeeDto getEmployeeById(long idEmployee) {
+
+        Employee employee = employeeRepository.getEmployeeById(idEmployee);
+
+        return EmployeeDto.parse(employee);
 
     }
 }

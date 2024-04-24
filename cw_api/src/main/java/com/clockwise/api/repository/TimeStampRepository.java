@@ -2,6 +2,7 @@ package com.clockwise.api.repository;
 
 import com.clockwise.api.model.Employee;
 import com.clockwise.api.model.TimeStamp;
+import com.clockwise.api.model.User;
 import com.clockwise.api.util.ConnectionDB;
 import org.springframework.stereotype.Repository;
 
@@ -24,15 +25,14 @@ public class TimeStampRepository {
         con = ConnectionDB.getConnection();
     }
 
-    public TimeStamp getEmployeeLastTimeStamp(Long employeeId) {
+    public TimeStamp getEmployeeLastTimeStamp(User user) {
         try {
-            ps = con.prepareStatement("SELECT id_ts, start_stamp, end_stamp, empl_id, id_user, email, role, is_enable, user_id, firstname, lastname, week_working_min FROM time_stamp JOIN users ON time_stamp.empl_id = users.id_user JOIN details_employee ON user.id_user = details_emloyee.user_id WHERE user_id = ? ORDER BY start_stamp DESC LIMIT 1");
-            ps.setLong(1, employeeId);
+            ps = con.prepareStatement("SELECT id_ts, start_stamp, end_stamp, empl_id, id_user, email, role, is_enable, user_id, firstname, lastname, week_working_min FROM time_stamp JOIN users ON time_stamp.empl_id = users.id_user JOIN details_employee ON users.id_user = details_employee.user_id WHERE user_id = ? ORDER BY start_stamp DESC LIMIT 1");
+            ps.setLong(1, user.getId());
 
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                // TODO : ne pas récupérer l'employee, probablement pas utile
                 Employee employee = new Employee.EmployeeBuilder()
                         .id(rs.getLong("empl_id"))
                         .email(rs.getString("email"))
@@ -62,7 +62,7 @@ public class TimeStampRepository {
     public List<TimeStamp> getEmployeeAllTimeStamp(Long employeeId) {
         List<TimeStamp> ret = new ArrayList<TimeStamp>();
 
-        String tsQuery = "SELECT id_ts, start_stamp, end_stamp FROM time_stamp WHERE empl_id = ?";
+        String tsQuery = "SELECT id_ts, start_stamp, end_stamp, empl_id FROM time_stamp WHERE empl_id = ?";
 
         try {
             ps = con.prepareStatement(tsQuery);
@@ -111,7 +111,6 @@ public class TimeStampRepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
 
@@ -130,7 +129,7 @@ public class TimeStampRepository {
 
     public boolean updateTimeStamp(TimeStamp timeStamp) {
         try {
-            ps = con.prepareStatement("UPDATE time_stamp SET start_stamp = ?, end_stamp = ? ) WHERE id_ts = ?");
+            ps = con.prepareStatement("UPDATE time_stamp SET start_stamp = ?, end_stamp = ? WHERE id_ts = ?");
             ps.setLong(1, timeStamp.getStartStamp());
             ps.setLong(2, timeStamp.getEndStamp());
             ps.setLong(3, timeStamp.getId());

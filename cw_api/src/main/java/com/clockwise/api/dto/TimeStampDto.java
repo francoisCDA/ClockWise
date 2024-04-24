@@ -23,6 +23,15 @@ public class TimeStampDto {
 
     private Date endStampDate ;
 
+    public int getDurationMin() {
+        return durationMin;
+    }
+
+    public void setDurationMin(int durationMin) {
+        this.durationMin = durationMin;
+    }
+
+    private int durationMin ;
 
 
     public Long getStartStampMillis() {
@@ -94,18 +103,37 @@ public class TimeStampDto {
         TimeStampDto timeStampDto = new TimeStampDto();
 
         timeStampDto.setStartStampMillis(timeStamp.getStartStamp());
-        timeStampDto.setEndStampMillis(timeStamp.getEndStamp());
-
         timeStampDto.setStartStampInstant(Instant.ofEpochMilli(timeStamp.getStartStamp()));
-        timeStampDto.setEndStampInstant(Instant.ofEpochMilli(timeStamp.getEndStamp()));
-
         timeStampDto.setStartStampDate(Date.from(timeStampDto.getStartStampInstant()));
-        timeStampDto.setEndStampDate(Date.from(timeStampDto.getEndStampInstant()));
-
         timeStampDto.setStartStampStr(timeStampDto.getStartStampDate().toString());
-        timeStampDto.setEndStampStr(timeStampDto.getEndStampDate().toString());
+
+
+
+        if (timeStamp.getEndStamp() != null) {
+            timeStampDto.setEndStampMillis(timeStamp.getEndStamp());
+            timeStampDto.setEndStampInstant(Instant.ofEpochMilli(timeStamp.getEndStamp()));
+            timeStampDto.setEndStampDate(Date.from(timeStampDto.getEndStampInstant()));
+            timeStampDto.setEndStampStr(timeStampDto.getEndStampDate().toString());
+
+            timeStampDto.setDurationMin(getDuration(timeStamp.getStartStamp(),timeStamp.getEndStamp()));
+        } else {
+            timeStampDto.setDurationMin(getDuration(timeStamp.getStartStamp(),Instant.now().toEpochMilli()));
+        }
 
         return timeStampDto;
+    }
+
+    private static int getDuration(Long start, Long end) {
+
+        if (end == 0) {
+            end = Instant.now().toEpochMilli();
+        }
+
+        Long duration = end - start;
+
+        duration = duration / 1000;
+
+        return (int) (duration / 60);
 
     }
 

@@ -1,6 +1,7 @@
 package com.clockwise.api.service;
 
 import com.clockwise.api.dto.UserDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +16,8 @@ public class RootService {
     private String rootPassword = System.getenv("API_ROOT_PASSWORD");
 
     private UserService userService;
+
+//    public RootService(){};
 
     public RootService(UserService userService) {
         this.userService = userService;
@@ -31,6 +34,8 @@ public class RootService {
             root.setEmail(rootMail);
             root.setPassword(rootPassword);
             root.setRole("ROLE_ADMIN");
+
+            userService.createUser(root);
 
             return root;
         }
