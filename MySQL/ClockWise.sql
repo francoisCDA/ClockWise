@@ -47,7 +47,7 @@ CREATE TABLE time_stamp (
 
 
 
-  -- select * from users;
+   select * from users;
  -- select * from details_employee;
  -- select * from role;
  -- select * from time_stamp;

@@ -65,7 +65,8 @@ public class UserRepository {
             return (ret > 0);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return false;
         }
     }
 

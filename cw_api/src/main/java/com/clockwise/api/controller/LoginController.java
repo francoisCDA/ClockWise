@@ -34,15 +34,6 @@ public class LoginController {
         return new ResponseBaseDto("Invalid connexion",null);
     }
 
-    // sera suprimée
-//    @PostMapping("/registertest/")
-//    public ResponseBaseDto register(@RequestBody UserDto userDto) {
-//
-//        if (userService.createUser(userDto)) {
-//            return new ResponseBaseDto("Success",null);
-//        }
-//        return new ResponseBaseDto("Invalid argument",null);
-//    }
 
     // génère l'utilisateur root faute de mieux
     @GetMapping("/init")
@@ -54,7 +45,7 @@ public class LoginController {
             userService.createUser(userDto);
             return ResponseEntity.ok("ok");
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.status(401).body("");
     }
 
 }
