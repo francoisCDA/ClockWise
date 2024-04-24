@@ -1,13 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 function PointageScreen() {
   const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const navigation = useNavigation();
 
-  const handlePointerPress = () => {
-    // Action à exécuter lors du clic sur le bouton "Pointer"
+  useEffect(() => {
+    const loadUserInfo = async () => {
+      try {
+        const token = await AsyncStorage.getItem('token');
+        const response = await axios.get('http://10.125.51.54:8000/cwise/api/v2/admin/employee', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const userData = response.data;
+        setFirstName(userData.firstName);
+        setLastName(userData.lastName);
+      } catch (error) {
+        console.error('Erreur de chargement des informations utilisateur :', error);
+      }
+    };
+    loadUserInfo();
+  }, []);
+
+  const handlePointerPress = async () => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      await axios.get('http://10.125.51.54:8000/cwise/api/v2/employee/stamp', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log('Pointage réussi');
+    } catch (error) {
+      console.error('Erreur de pointage :', error);
+    }
   };
 
   const handleSignalementPress = () => {
@@ -20,16 +53,12 @@ function PointageScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Image en haut */}
       <Image
         source={require('../assets/logo_clockwise.png')}
         style={styles.image}
       />
-      {/* Prénom et Nom */}
-      <Text style={[styles.name, { color: 'rgba(0, 29, 46, 1)'}]}>MATHEO CORZA</Text>
-      {/* Heure actuelle */}
-      <Text style={[styles.time, { color: 'rgba(0, 29, 46, 1)'}]}>{currentTime}</Text>
-      {/* Bouton "Pointer" */}
+      <Text style={[styles.name, { color: 'black'}]}>{firstName} {lastName}</Text>
+      <Text style={[styles.time, { color: 'black'}]}>{currentTime}</Text>
       <TouchableOpacity style={styles.pointerButton} onPress={handlePointerPress}>
         <View style={styles.pointerButtonInner}>
           <Image
@@ -39,9 +68,7 @@ function PointageScreen() {
           <Text style={styles.pointerText}>POINTAGE</Text>
         </View>
       </TouchableOpacity>
-      {/* Barre de séparation */}
       <View style={styles.separator} />
-      {/* Boutons supplémentaires */}
       <View style={styles.additionalButtons}>
         <TouchableOpacity style={styles.additionalButton1} onPress={handleSignalementPress}>
           <Text style={styles.additionalButtonText}>Signaler un problème</Text>
@@ -74,11 +101,13 @@ const styles = StyleSheet.create({
     fontSize: 40,
     marginVertical: 10,
     fontWeight: 'bold',
+    color: 'black',
   },
   time: {
     fontSize: 25,
     marginBottom: 20,
     marginTop: 40,
+    color: 'black',
   },
   pointerButton: {
     width: 220,
