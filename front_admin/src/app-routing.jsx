@@ -4,29 +4,24 @@ import Signin from "./components/auth/Signin";
 import Home from "./components/clockwise/Home";
 import Listreport from "./components/clockwise/ListReport";
 import Details from "./components/clockwise/DetailsEmployee";
+import ProtectedRoute from "./components/auth/protectedRoute";
 
 const router = createBrowserRouter([
     {path : "/",
-    element : <App />,
-    children: [
-        {
-            path :"/",
-            element : <Signin />
-        },
+    element : <Signin />},
         {
             path: "/home",
-            element: <Home />
+            element:<Home />
         },
         {
             path: "/listreport",
             element: <Listreport />
         },
         {
-            path: "/details/:id",
+            path: "/employee/:id",
             element: <Details />
         }
 
-    ]}
 ])
 
 
