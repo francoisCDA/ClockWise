@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CwApiApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(CwApiApplication.class, args);
+		System.out.println("Hello World!");
 	}
 
 }
