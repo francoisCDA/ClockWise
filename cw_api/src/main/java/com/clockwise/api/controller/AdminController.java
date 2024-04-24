@@ -5,6 +5,7 @@ import com.clockwise.api.dto.EmployeeDto;
 import com.clockwise.api.dto.ResponseBaseDto;
 import com.clockwise.api.dto.TimelaspDto;
 import com.clockwise.api.dto.UserDto;
+
 import com.clockwise.api.model.TimeStamp;
 import com.clockwise.api.service.EmployeeService;
 import com.clockwise.api.service.TimeStampService;
@@ -12,7 +13,7 @@ import com.clockwise.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -52,9 +53,7 @@ public class AdminController {
         return new ResponseEntity<String>("Not implemented yet",null,HttpStatus.BAD_REQUEST);
     }
 
-
     // ADMINISTRATION DES EMPLOYEES
-
 
     @PostMapping("/employee")  // POST @ localhost:8000/cwise/api/v2/admin/employee
     public ResponseEntity<String> createEmployee(@RequestBody EmployeeDto employeeDto) {
@@ -67,18 +66,16 @@ public class AdminController {
 
     @GetMapping("/employees")
     public ResponseEntity<List<EmployeeDto>> getAllEmployees() {
-
-        List<EmployeeDto> list = new ArrayList<>();
+        List<EmployeeDto> list = employeeService.getAllEmployee();
         return ResponseEntity.ok(list);
-
     }
 
-    @GetMapping("/employee/")
-    public ResponseBaseDto getEmployeeById(@RequestParam("id") long id) {
+    @GetMapping("/employee/{idEmployee}")
+    public ResponseBaseDto getEmployeeById(@PathVariable long idEmployee) {
 
-        EmployeeDto employeeDto = new EmployeeDto();
+        EmployeeDto employeeDto = employeeService.getEmployeeById(idEmployee);
 
-        List<TimeStamp> timeStamps = new ArrayList<>();
+        List<TimeStamp> timeStamps = timeStampService.getEmployeeAllTimeStamp(idEmployee);
 
         HashMap<String,Object> data = new HashMap<>();
 
@@ -86,11 +83,10 @@ public class AdminController {
 
         data.put("employee",employeeDto);
         data.put("timeStamps",timeStamps);
-        data.put("messages",messages);
+        data.put("messages","aucun message");
 
         return new ResponseBaseDto("success",data);
     }
-
 
     @PutMapping("/employee")
     public ResponseEntity<String> updateEmployee(@RequestBody EmployeeDto employeeDto) {

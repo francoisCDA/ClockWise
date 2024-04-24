@@ -6,7 +6,7 @@ public class UserDto {
     protected Long id;
     protected String email;
     protected String password;
-    private String role;
+    protected String role;
 
     public UserDto() {}
 
