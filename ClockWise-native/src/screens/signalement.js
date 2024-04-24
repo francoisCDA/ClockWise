@@ -23,7 +23,7 @@ function SignalementScreen() {
         source={require('../assets/logo_clockwise.png')}
         style={styles.image}
       />
-      <Text style={[styles.name, { color: 'rgba(0, 29, 46, 1)'}]}>MATHEO CORZA</Text>
+      <Text style={[styles.name, { color: 'rgba(0, 29, 46, 1)'}]}>MATHEO GILLE</Text>
       <View style={styles.separator} />
       <Text style={[styles.signal, { color: 'rgba(0, 29, 46, 1)'}]}>PAGE DE SIGNALEMENT</Text>
 

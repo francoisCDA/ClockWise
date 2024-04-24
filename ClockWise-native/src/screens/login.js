@@ -52,13 +52,11 @@ const LoginScreen = ({ navigation }) => {
       if (data.message === "Success") {
         setEmail('');
         setPassword('');
-        if (rememberMe) {
+          
           await AsyncStorage.setItem('email', email);
           await AsyncStorage.setItem('password', password);
-        } else {
-          await AsyncStorage.removeItem('email');
-          await AsyncStorage.removeItem('password');
-        }
+          await AsyncStorage.setItem('token', data.data.token);
+        
         navigation.navigate('Pointage');
       } else {
         Alert.alert('Error', data.message);

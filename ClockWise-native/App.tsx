@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from './src/screens/login';
 import PointageScreen from './src/screens/pointage';
 import Signalement from './src/screens/signalement'; 
+import Historique from './src/screens/historique';
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ export default function App() {
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
         <Stack.Screen name="Pointage" component={PointageScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="Signalement" component={Signalement} options={{ headerShown: false }}/>
+        <Stack.Screen name="Historique" component={Historique} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -8,20 +8,23 @@ function PointageScreen() {
   const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [isWorking, setIsWorking] = useState(false);
   const navigation = useNavigation();
 
   useEffect(() => {
     const loadUserInfo = async () => {
       try {
-        const token = await AsyncStorage.getItem('token');
-        const response = await axios.get('http://10.125.51.54:8000/cwise/api/v2/admin/employee', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+        AsyncStorage.getItem('token').then(async value => {
+          const response = await axios.get('http://10.125.51.54:8000/cwise/api/v2/employee/statut', {
+            headers: {
+              Authorization: `Bearer ${value}`,
+            },
+          });
+          const userData = response.data;
+          setFirstName(userData.data.firstname);
+          setLastName(userData.data.lastname);
+          setIsWorking(userData.data.isWorking);
         });
-        const userData = response.data;
-        setFirstName(userData.firstName);
-        setLastName(userData.lastName);
       } catch (error) {
         console.error('Erreur de chargement des informations utilisateur :', error);
       }
@@ -31,24 +34,31 @@ function PointageScreen() {
 
   const handlePointerPress = async () => {
     try {
-      const token = await AsyncStorage.getItem('token');
-      await axios.get('http://10.125.51.54:8000/cwise/api/v2/employee/stamp', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      AsyncStorage.getItem('token').then(async value => {
+        const response = await axios.get('http://10.125.51.54:8000/cwise/api/v2/employee/stamp', {
+          headers: {
+            Authorization: `Bearer ${value}`,
+          },
+        });
+        console.log(response.data);
+        console.log('Pointage réussi');
+        setIsWorking(!isWorking);
       });
-      console.log('Pointage réussi');
     } catch (error) {
       console.error('Erreur de pointage :', error);
     }
   };
 
   const handleSignalementPress = () => {
-    navigation.navigate('Signalement'); 
+    navigation.navigate('Signalement');
+  };
+
+  const handleHistoriquePress = () => {
+    navigation.navigate('Historique'); 
   };
 
   const handleDecoPress = () => {
-    navigation.navigate('Login'); 
+    navigation.navigate('Login');
   };
 
   return (
@@ -57,8 +67,15 @@ function PointageScreen() {
         source={require('../assets/logo_clockwise.png')}
         style={styles.image}
       />
-      <Text style={[styles.name, { color: 'black'}]}>{firstName} {lastName}</Text>
-      <Text style={[styles.time, { color: 'black'}]}>{currentTime}</Text>
+      <View style={styles.nameContainer}>
+        <Text style={[styles.name, { color: 'black' }]}>{firstName} </Text>
+        <Text style={[styles.name, { color: 'black' }]}>{lastName}</Text>
+      </View>
+      {isWorking ? (
+        <Text style={[styles.workingStatus, { color: 'green' }]}>Vous êtes en train de travailler</Text>
+      ) : (
+        <Text style={[styles.workingStatus, { color: 'red' }]}>Vous n'êtes pas en train de travailler</Text>
+      )}
       <TouchableOpacity style={styles.pointerButton} onPress={handlePointerPress}>
         <View style={styles.pointerButtonInner}>
           <Image
@@ -73,7 +90,7 @@ function PointageScreen() {
         <TouchableOpacity style={styles.additionalButton1} onPress={handleSignalementPress}>
           <Text style={styles.additionalButtonText}>Signaler un problème</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.additionalButton2}>
+        <TouchableOpacity style={styles.additionalButton2} onPress={handleHistoriquePress}>
           <Text style={styles.additionalButtonText}>Historique</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.additionalButton3} onPress={handleDecoPress}>
@@ -97,6 +114,11 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginTop: 0,
   },
+  nameContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
   name: {
     fontSize: 40,
     marginVertical: 10,
@@ -109,6 +131,10 @@ const styles = StyleSheet.create({
     marginTop: 40,
     color: 'black',
   },
+  workingStatus: {
+    fontSize: 20,
+    marginBottom: 20,
+  },
   pointerButton: {
     width: 220,
     height: 220,
@@ -117,7 +143,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 2,
-    borderColor: 'black', 
+    borderColor: 'black',
   },
   pointerButtonInner: {
     alignItems: 'center',
