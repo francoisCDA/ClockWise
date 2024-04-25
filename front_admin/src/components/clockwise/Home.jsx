@@ -1,14 +1,20 @@
 import Table from "react-bootstrap/Table";
-import {Container, NavLink, Stack} from "react-bootstrap";
+import {Container, Stack} from "react-bootstrap";
+import {NavLink, useNavigate} from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import {DateRange} from "react-date-range";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import ModalAddEmployee from "../modal/ModalAddEmployee";
+import employeeService from "../service/employeeService";
+import EmployeeTable from "../table/EmployeeTable";
+import authService from "../service/authService";
 
-function Home({employees}){
+function Home(){
+    const navigate = useNavigate();
+    const [employees, setEmployees] = useState([]);
     const [state, setState] = useState([
         {
             startDate: new Date(),
@@ -16,6 +22,11 @@ function Home({employees}){
             key: 'selection'
         }
     ]);
+
+    const handleLogout = () => {
+        authService.logout();
+        navigate('/'); // Rediriger vers la page de connexion
+    };
 
     const [showModal, setShowModal] = useState(false);
 
@@ -26,6 +37,20 @@ function Home({employees}){
     const closeModal = () => {
         setShowModal(false);
     };
+
+    useEffect(() => {
+        const fetchEmployees = async () => {
+            try {
+                const response = await employeeService.getAllEmployees();
+                setEmployees(response.data);
+            } catch (error) {
+                console.error('Error fetching employees:', error);
+            }
+        };
+
+        fetchEmployees();
+    }, []);
+
     return(
         <>
             <Container>
@@ -49,7 +74,7 @@ function Home({employees}){
                     </Col>
                     <Col md={4}>
                         <Stack gap={3} className="col-md-5 mx-auto">
-                            <Button variant="danger">Se déconnecter</Button>
+                            <Button variant="danger" onClick={handleLogout}>Se déconnecter</Button>
                             <Button variant="warning" onClick={openModal}>ajouter employee</Button>
                             <ModalAddEmployee showModal={showModal} handleClose={closeModal} />
                             <NavLink to={"/list"}>
@@ -59,53 +84,10 @@ function Home({employees}){
                     </Col>
                 </Row>
             </Container>
-            <Container fluid="md">
-                <Table striped bordered hover responsive="md">
-                    <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Email</th>
-                        <th>Nombre d'heure(s)</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {employees.map((employee) => (
-                        <tr key={employee.id}>
-                            <td>{employee.lastname}</td>
-                            <td>{employee.firstname}</td>
-                            <td>{employee.email}</td>
-                            <td>{employee.weekWorkingHour}</td>
-                        </tr>
-
-                    ))}
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <Button variant="outline-info"> <span>Details</span></Button>
-                            <Button variant="outline-warning"><span>Edit</span></Button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    </tbody>
-                </Table>
-            </Container>
-
+            <div>
+                <h3>Liste des employés</h3>
+                <EmployeeTable employees={employees} />
+            </div>
         </>
     )
 }

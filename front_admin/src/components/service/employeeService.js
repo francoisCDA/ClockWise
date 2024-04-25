@@ -19,12 +19,12 @@ const registerEmployee = (email, password, firstname, lastname, weekWorkingHour 
     return api.post('/admin/employee', employee, { headers: authHeader } );
 }
 
-const getAllEmployees = () => {
-    return api.get('/employee', {headers: authHeader()})
+const getAllEmployees = async () => {
+    return await api.get('admin/employees', {headers: authHeader()})
 };
 
 const getEmployeeId = () => {
-    return api.get('/employee/{id}', {headers: authHeader()})
+    return api.get('admin/employee/{id}', {headers: authHeader()})
 }
 const registerReport = (title, comment) => {
     return api.post(`/report/registerReport`, title, { headers: authHeader() })
