@@ -26,6 +26,9 @@ const getAllEmployees = () => {
 const getEmployeeId = () => {
     return api.get('/employee/{id}', {headers: authHeader()})
 }
+const registerReport = (title, comment) => {
+    return api.post(`/report/registerReport`, title, { headers: authHeader() })
+}
 
 
-export default {registerEmployee, getAllEmployees};
+export default {registerEmployee, getAllEmployees, getEmployeeId, registerReport};
