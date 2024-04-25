@@ -17,6 +17,7 @@ const ReportModal = ({ showModal, handleClose }) => {
         e.preventDefault();
         try {
             await employeeService.registerReport(title, comment);
+            console.log(title, comment)
         } catch (error) {
             setError('échec création rapport')
         }
@@ -34,7 +35,8 @@ const ReportModal = ({ showModal, handleClose }) => {
                 <Form.Group>
                     <Form.Label>Titre :</Form.Label>
                     <Form.Control
-                        as="text"
+                        size="lg"
+                        type="text"
                         rows={5}
                         placeholder="Entrez votre titre de rapport ici"
                         value={title}

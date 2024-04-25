@@ -1,15 +1,17 @@
-import {Container, NavLink, Stack} from "react-bootstrap";
+import {Container, Stack} from "react-bootstrap";
+import {NavLink, useNavigate} from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import {DateRange} from "react-date-range";
 import Button from "react-bootstrap/Button";
-import Table from "react-bootstrap/Table";
 import {useState} from "react";
 import ModalReport from "../modal/ModalReport";
+import authService from "../service/authService";
 
 
 function Listreport(){
+    const navigate = useNavigate();
     const [state, setState] = useState([
         {
             startDate: new Date(),
@@ -27,6 +29,12 @@ function Listreport(){
     const closeModal = () => {
         setShowModal(false);
     };
+    const handleLogout = () => {
+        authService.logout();
+        //localStorage.removeItem('user'); // Supprimer l'utilisateur du localStorage pour "déconnecter"
+        navigate('/'); // Rediriger vers la page de connexion
+    };
+
     return(
         <>
             <Container>
@@ -60,44 +68,6 @@ function Listreport(){
                     </Col>
                 </Row>
             </Container>
-            <Container fluid="md">
-                <Table striped bordered hover responsive="md">
-                    <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Email</th>
-                        <th>Nombre d'heure(s)</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <Button variant="outline-info"> <span>Details</span></Button>
-                            <Button variant="outline-warning"><span>Edit</span></Button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    </tbody>
-                </Table>
-            </Container>
-
         </>
     )
 
