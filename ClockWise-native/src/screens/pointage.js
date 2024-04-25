@@ -15,7 +15,7 @@ function PointageScreen() {
     const loadUserInfo = async () => {
       try {
         AsyncStorage.getItem('token').then(async value => {
-          const response = await axios.get('http://10.125.51.54:8000/cwise/api/v2/employee/statut', {
+          const response = await axios.get('http://10.125.51.52:8000/cwise/api/v2/employee/statut', {
             headers: {
               Authorization: `Bearer ${value}`,
             },
@@ -35,7 +35,7 @@ function PointageScreen() {
   const handlePointerPress = async () => {
     try {
       AsyncStorage.getItem('token').then(async value => {
-        const response = await axios.get('http://10.125.51.54:8000/cwise/api/v2/employee/stamp', {
+        const response = await axios.get('http://10.125.51.52:8000/cwise/api/v2/employee/stamp', {
           headers: {
             Authorization: `Bearer ${value}`,
           },

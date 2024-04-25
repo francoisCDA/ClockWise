@@ -31,6 +31,8 @@ services:
       - SQL_USERNAME=${SQL_USERNAME}
       - SQL_PASSWORD=${SQL_PASSWORD}
       - JWT_SECRET=${JWT_SECRET}
+      - API_ROOT_MAIL=${API_ROOT_MAIL}
+      - API_ROOT_PASSWORD=${API_ROOT_PASSWORD}
     networks:
       - cwise_net
     expose:
