@@ -262,32 +262,80 @@ La réponse renvoie le dernier timeStamp en base de données
 - *durationMin* (int) : durée de la période d'activité (calculé à partir de l'instant présent si *endStamp* est null)
 
 
-### 1 - récupére le statut
+### 2 - récupére le statut
 utiliser pour récupérer des informations utiles.
 
 ##### - Endpoint -
 ```
-Get @ http://host:8000/cwise/api/v2/stamp
+Get @ http://host:8000/cwise/api/v2/statut
 ```
 
 #### - Réponse '200 OK' body -
 ```
 {
-    "startStampMillis": 1714040450471,
-    "endStampMillis": null,
-    "startStampInstant": "2024-04-25T10:20:50.471Z",
-    "endStampInstant": null,
-    "startStampStr": "Thu Apr 25 10:20:50 UTC 2024",
-    "endStampStr": null,
-    "startStampDate": "2024-04-25T10:20:50.471+00:00",
-    "endStampDate": null,
-    "durationMin": 154
+    "message": "Success",
+    "data": {
+        "lastTimeStamp": {
+            "startStampMillis": 1714045486635,
+            "endStampMillis": 0,
+            "startStampInstant": "2024-04-25T11:44:46.635Z",
+            "endStampInstant": "1970-01-01T00:00:00Z",
+            "startStampStr": "Thu Apr 25 11:44:46 UTC 2024",
+            "endStampStr": "Thu Jan 01 00:00:00 UTC 1970",
+            "startStampDate": "2024-04-25T11:44:46.635+00:00",
+            "endStampDate": "1970-01-01T00:00:00.000+00:00",
+            "durationMin": 0
+        },
+        "firstname": "prenom",
+        "weekWorkingHour": 35.5,
+        "isWorking": true,
+        "lastname": "nom"
+    }
 }
 ```
 
 #### variables
-La réponse renvoie le dernier timeStamp en base de données
-- *startStamp** : début de période de pointage dans différents formats, ne peut être null
-- *endStamp** : fin de période de pointage, sera *null* en période de travail
-- *durationMin* (int) : durée de la période d'activité (calculé à partir de l'instant présent si *endStamp* est null)
+- *isWorking* (boolean) : durée de la période d'activité (calculé à partir de l'instant présent si *endStamp* est null)
+
+
+
+### 3 - récupére la liste des timeStamps
+utiliser par l'utilisateur pour récupérer les timeStamps 
+
+##### - Endpoint -
+```
+Get @ http://host:8000/cwise/api/v2/timestamps
+```
+
+#### - Réponse '200 OK' body -
+```
+[
+       {
+        "startStampMillis": 1714036204371,
+        "endStampMillis": 1714036395423,
+        "startStampInstant": "2024-04-25T09:10:04.371Z",
+        "endStampInstant": "2024-04-25T09:13:15.423Z",
+        "startStampStr": "Thu Apr 25 09:10:04 UTC 2024",
+        "endStampStr": "Thu Apr 25 09:13:15 UTC 2024",
+        "startStampDate": "2024-04-25T09:10:04.371+00:00",
+        "endStampDate": "2024-04-25T09:13:15.423+00:00",
+        "durationMin": 3
+    },
+    {
+        "startStampMillis": 1714036885112,
+        "endStampMillis": 1714038853788,
+        "startStampInstant": "2024-04-25T09:21:25.112Z",
+        "endStampInstant": "2024-04-25T09:54:13.788Z",
+        "startStampStr": "Thu Apr 25 09:21:25 UTC 2024",
+        "endStampStr": "Thu Apr 25 09:54:13 UTC 2024",
+        "startStampDate": "2024-04-25T09:21:25.112+00:00",
+        "endStampDate": "2024-04-25T09:54:13.788+00:00",
+        "durationMin": 32
+    }
+]
+```
+
+
+
+
 
